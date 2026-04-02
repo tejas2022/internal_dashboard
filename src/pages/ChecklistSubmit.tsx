@@ -37,8 +37,8 @@ export default function ChecklistSubmit() {
   })
 
   const { data: templateData, isLoading } = useQuery({
-    queryKey: ['checklist-templates', appData?.type, session],
-    queryFn: () => checklistsApi.templates({ application_type: appData?.type || 'general', session }),
+    queryKey: ['checklist-templates', appId, session],
+    queryFn: () => checklistsApi.templates({ application_id: appId, session }),
     enabled: !!appData,
   })
 
