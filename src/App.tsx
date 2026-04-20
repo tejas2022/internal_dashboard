@@ -15,6 +15,8 @@ import MyTasks from './pages/MyTasks'
 import Stakeholder from './pages/Stakeholder'
 import Users from './pages/Users'
 import AuditLogs from './pages/AuditLogs'
+import InfraChecklists from './pages/InfraChecklists'
+import InfraChecklistSubmit from './pages/InfraChecklistSubmit'
 
 const ProtectedRoute: React.FC<{
   element: React.ReactElement
@@ -65,6 +67,8 @@ const AppRoutes = () => {
         <Route path="/my-tasks" element={<ProtectedRoute element={<MyTasks />} />} />
         <Route path="/users" element={<ProtectedRoute element={<Users />} adminOnly />} />
         <Route path="/audit" element={<ProtectedRoute element={<AuditLogs />} adminOnly />} />
+        <Route path="/infra-checklists" element={<ProtectedRoute element={<InfraChecklists />} />} />
+        <Route path="/infra-checklists/submit/:categoryId" element={<ProtectedRoute element={<InfraChecklistSubmit />} />} />
       </Route>
 
       <Route path="/" element={<Navigate to={defaultRoute()} replace />} />

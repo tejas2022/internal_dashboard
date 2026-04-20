@@ -150,10 +150,24 @@ export const projectsApi = {
 // Dashboard
 export const dashboardApi = {
   cio: () => api.get('/dashboard/summary'),
-  stakeholder: () => api.get('/dashboard/stakeholder'),
+  trends: () => api.get('/dashboard/trends'),
+  stakeholder: (params?: Record<string, unknown>) => api.get('/dashboard/stakeholder', { params }),
 }
 
 // Audit
 export const auditApi = {
   logs: (params?: Record<string, unknown>) => api.get('/audit/logs', { params }),
+}
+
+// Infra BOD Checklists
+export const infraChecklistsApi = {
+  categories: () => api.get('/infra-checklists/categories'),
+  myCategories: () => api.get('/infra-checklists/my-categories'),
+  assign: (categoryId: string, managerUserId: string | null) =>
+    api.patch(`/infra-checklists/categories/${categoryId}/assign`, { manager_user_id: managerUserId }),
+  templates: (params?: Record<string, unknown>) => api.get('/infra-checklists/templates', { params }),
+  today: () => api.get('/infra-checklists/today'),
+  list: (params?: Record<string, unknown>) => api.get('/infra-checklists', { params }),
+  get: (id: string) => api.get(`/infra-checklists/${id}`),
+  submit: (data: Record<string, unknown>) => api.post('/infra-checklists', data),
 }

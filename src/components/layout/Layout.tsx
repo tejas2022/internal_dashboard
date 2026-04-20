@@ -14,6 +14,7 @@ const pageTitles: Record<string, string> = {
   '/my-tasks': 'My Tasks',
   '/users': 'User Management',
   '/audit': 'Audit Logs',
+  '/infra-checklists': 'Infra BOD Checklist',
 }
 
 export default function Layout() {

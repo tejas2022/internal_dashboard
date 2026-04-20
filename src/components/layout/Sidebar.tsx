@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import {
   LayoutDashboard, Server, ClipboardCheck, Network, Shield, Bug,
   FolderKanban, CheckSquare, Users, ScrollText, LogOut, ChevronLeft,
-  ChevronRight, Presentation
+  ChevronRight, Presentation, HardDrive
 } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import { clsx } from 'clsx'
@@ -19,6 +19,7 @@ const navItems: NavItem[] = [
   { to: '/dashboard', icon: <LayoutDashboard size={18} />, label: 'Dashboard', adminOnly: true },
   { to: '/applications', icon: <Server size={18} />, label: 'Applications', adminOnly: true },
   { to: '/checklists', icon: <ClipboardCheck size={18} />, label: 'Checklists', userAccess: true },
+  { to: '/infra-checklists', icon: <HardDrive size={18} />, label: 'Infra BOD', userAccess: true },
   { to: '/network', icon: <Network size={18} />, label: 'Network', adminOnly: true },
   { to: '/security', icon: <Shield size={18} />, label: 'Security', adminOnly: true },
   { to: '/vapt', icon: <Bug size={18} />, label: 'VAPT', adminOnly: true },
