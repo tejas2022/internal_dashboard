@@ -434,7 +434,7 @@ export default function Stakeholder() {
                       <div className="h-2.5 rounded-full transition-all duration-500"
                         style={{ width: `${pct}%`, backgroundColor: barColor }} />
                     </div>
-                    {p.end_date && (
+                    {Boolean(p.end_date) && (
                       <p className="text-[10px] text-gray-400 mt-1">
                         Due: {format(new Date(String(p.end_date)), 'dd MMM yyyy')}
                       </p>

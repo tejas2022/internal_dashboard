@@ -74,7 +74,7 @@ export default function ChecklistSubmit() {
 
   const setFailureField = (idx: number, field: string, value: string) => {
     setItems(prev => prev.map((item, i) => i === idx
-      ? { ...item, failure: { ...item.failure, [field]: value } }
+      ? { ...item, failure: { ...item.failure, [field]: value } as Record<string, string> }
       : item
     ))
   }
