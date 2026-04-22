@@ -4,9 +4,10 @@ import { useQuery, useMutation } from '@tanstack/react-query'
 import { checklistsApi, applicationsApi } from '../services/api'
 import { Button, Card, Textarea, Select, Input, Alert } from '../components/ui'
 import { CheckCircle, XCircle, MinusCircle, AlertTriangle } from 'lucide-react'
-import type { ChecklistItem } from '../types'
+import type { ChecklistItem, ChecklistFailure } from '../types'
 
 type ItemResult = 'pass' | 'fail' | 'na' | 'edge_case' | null
+type DraftItem = Omit<ChecklistItem, 'failure'> & { failure?: Partial<ChecklistFailure> }
 
 const ResultButton = ({ result, active, onClick, icon, label, color }: {
   result: ItemResult; active: boolean; onClick: () => void; icon: React.ReactNode; label: string; color: string
@@ -25,7 +26,7 @@ export default function ChecklistSubmit() {
   const session = (searchParams.get('session') || 'BOD') as 'BOD' | 'EOD'
   const navigate = useNavigate()
 
-  const [items, setItems] = useState<(ChecklistItem & { failure?: Record<string, string> })[]>([])
+  const [items, setItems] = useState<DraftItem[]>([])
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
 
@@ -74,7 +75,7 @@ export default function ChecklistSubmit() {
 
   const setFailureField = (idx: number, field: string, value: string) => {
     setItems(prev => prev.map((item, i) => i === idx
-      ? { ...item, failure: { ...item.failure, [field]: value } as Record<string, string> }
+      ? { ...item, failure: { ...item.failure, [field]: value } }
       : item
     ))
   }
